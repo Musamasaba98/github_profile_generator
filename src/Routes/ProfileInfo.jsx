@@ -2,6 +2,7 @@ import { CalendarMonth, Place } from "@mui/icons-material";
 import { Avatar, Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const ProfileInfo = () => {
   const profile = useLoaderData();
@@ -9,9 +10,9 @@ const ProfileInfo = () => {
   const date = `${created_at.getDate()} ${
     created_at.getMonth() + 1
   },${created_at.getFullYear()}`;
-  console.log(profile);
   return (
     <Box>
+      <Navbar />
       <Box
         display="flex"
         flexDirection="column"
@@ -23,24 +24,32 @@ const ProfileInfo = () => {
           alt="Remy Sharp"
           src={profile.avatar_url}
           sx={{
-            width: 100,
-            height: 100,
-            border: "10px solid rgb(0, 112, 243)",
+            width: 150,
+            height: 150,
+            border: "7px solid rgb(0, 112, 243)",
           }}
         />
         <Box display="flex" flexDirection="column" alignItems="center">
-          <Typography variant="h3" color="white">
+          <Typography variant="h3" color="white" align="center">
             {profile.name}
           </Typography>
           <Typography
             variant="p"
             color="#1a1ea2"
+            sx={{
+              fontFamily: "Share Tech Mono",
+              fontSize: "1.5rem",
+              "&:hover": {
+                borderBottom: "2px solid rgb(0, 112, 243)",
+              },
+            }}
           >{`@${profile.login}`}</Typography>
         </Box>
         <Box
           padding="1rem .1rem"
           display="flex"
           justifyContent="space-around"
+          gap="1.5rem"
           alignItems="center"
         >
           <Typography variant="p" color="#bdbdbd">

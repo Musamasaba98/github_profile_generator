@@ -17,11 +17,13 @@ function Root() {
     >
       <Box display="flex" flexDirection="column" gap="1rem" alignItems="center" >
         <GitHub sx={{ fontSize: "5rem", color: "rgb(0, 112, 243)" }} />
-        <Typography variant='h3' sx={{ fontWeight: "bold", color: "white" }}>
+        <Typography variant='h3' align='center' sx={{ fontWeight: "bold", color: "white" }}>
           Find Your GitHub Profile
         </Typography>
         <Form method="post" style={{ width: "100%" }}>
-          <TextField fullWidth label="username" name='username' id="username" InputProps={{ style: { color: "white" } }} InputLabelProps={{ style: { color: "rgb(0, 112, 243)" } }} />
+          <TextField fullWidth label="username" name='username' id="username"
+            InputProps={{ style: { color: "white", "&:focus": { backgroundColor: "transparent !important" } } }}
+            InputLabelProps={{ style: { color: "rgb(0, 112, 243)" } }} />
         </Form>
       </Box>
     </Box>
