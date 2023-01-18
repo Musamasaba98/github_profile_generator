@@ -5,7 +5,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { ArrowBack } from "@mui/icons-material";
 import { Link, useParams } from "react-router-dom";
-import { Button } from "@mui/material";
 
 function Navbar() {
   const { username } = useParams();

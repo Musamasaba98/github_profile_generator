@@ -1,13 +1,6 @@
-import { ForkLeft, GitHub, Star } from "@mui/icons-material";
+import { Star } from "@mui/icons-material";
 import React, { useState } from "react";
-import {
-  Typography,
-  Select,
-  MenuItem,
-  Card,
-  CardHeader,
-  Grid,
-} from "@mui/material";
+import { Typography, Select, MenuItem, Card, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import { useFetcher, useLoaderData } from "react-router-dom";
 
