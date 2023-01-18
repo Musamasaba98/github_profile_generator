@@ -17,7 +17,7 @@ const ProfileInfo = () => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        padding="1rem .5rem"
+        padding="5rem .5rem"
         sx={{ backgroundColor: "#1a1e22" }}
       >
         <Avatar

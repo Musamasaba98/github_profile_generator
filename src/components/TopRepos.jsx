@@ -1,12 +1,12 @@
 import { ForkLeft, GitHub, Star } from "@mui/icons-material";
 import React, { useState } from "react";
 import {
-  ListItem,
-  Grid,
-  Paper,
   Typography,
   Select,
   MenuItem,
+  Card,
+  CardHeader,
+  Grid,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useFetcher, useLoaderData } from "react-router-dom";
@@ -16,7 +16,6 @@ const TopRepos = () => {
   const fetcher = useFetcher();
   const loader = useLoaderData();
   console.log(loader);
-
   const handleChange = (e) => {
     setValue(e.target.value);
     fetcher.submit(e.target.form);
@@ -48,25 +47,84 @@ const TopRepos = () => {
           </Select>
         </fetcher.Form>
       </Box>
-      <Paper>
-        <ListItem leftAvatar={<GitHub />} primaryText={"Repository Name"} />
-        <Grid container>
-          <Grid item xs={12}>
-            <ListItem primaryText={"Repository Description"} />
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs={8}>
-            <ListItem primaryText={"Repository Language"} />
-          </Grid>
-          <Grid item xs={2}>
-            <ListItem rightIcon={<Star />} primaryText={"0"} />
-          </Grid>
-          <Grid item xs={2}>
-            <ListItem rightIcon={<ForkLeft />} primaryText={"0"} />
-          </Grid>
-        </Grid>
-      </Paper>
+      <Grid container spacing={3}>
+        {loader.map((repo) => {
+          return (
+            <Grid item key={repo.id} xs={12} sm={6} md={4}>
+              <Card sx={{ padding: "1rem" }}>
+                <Box display="flex" justifyContent="left" alignItems="center">
+                  <svg
+                    aria-hidden="true"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    version="1.1"
+                    width="16"
+                    data-view-component="true"
+                    class="octicon octicon-repo"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"
+                    ></path>
+                  </svg>
+                  <Typography
+                    variant="p"
+                    component="span"
+                    pl=".8rem"
+                    fontWeight="bold"
+                    fontSize="20px"
+                  >
+                    {repo.name}
+                  </Typography>
+                </Box>
+                <Box mt="14px" mb="32px" fontSize="14PX">
+                  {repo.description}
+                </Box>
+                <Box
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  mb="-.5rem"
+                >
+                  <Typography
+                    variant="div"
+                    component="div"
+                    display="flex"
+                    gap=".5rem"
+                    alignItems="center"
+                  >
+                    <Typography component="p" fontSize=".8rem">
+                      {repo.language ? repo.language : `"language?"`}
+                    </Typography>
+                    <Typography>
+                      <Star sx={{ fontSize: "1rem" }} />
+                      {repo.stargazers_count}
+                    </Typography>
+                    <Typography>
+                      <svg
+                        aria-hidden="true"
+                        class="octicon"
+                        height="16"
+                        role="img"
+                        viewBox="0 0 10 16"
+                        width="10"
+                        style={{ fontSize: ".5rem" }}
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"
+                        ></path>
+                      </svg>
+                      {repo.forks_count}
+                    </Typography>
+                  </Typography>
+                  <Typography component="div">{repo.size}KB</Typography>
+                </Box>
+              </Card>
+            </Grid>
+          );
+        })}
+      </Grid>
     </Box>
   );
 };

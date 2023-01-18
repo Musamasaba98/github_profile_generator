@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         loader: topReposLoader,
       },
       {
-        path: "/user/:username/repos?",
+        path: "/user/:username/repos",
         action: sortAction
       }
     ]
