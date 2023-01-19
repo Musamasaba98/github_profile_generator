@@ -2,16 +2,20 @@ import { Star } from "@mui/icons-material";
 import React, { useState } from "react";
 import { Typography, Select, MenuItem, Card, Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import { useFetcher, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 
 const TopRepos = () => {
-  const [value, setValue] = useState("stars");
-  const fetcher = useFetcher();
   const loader = useLoaderData();
-  console.log(loader);
+  const [value, setValue] = useState(`stargazers_count`);
+  const numberOfRepos = 9;
+  const sortRepo = loader
+    .filter((repo) => !repo.fork)
+    .sort((a, b) => b[value] - a[value])
+    .slice(0, numberOfRepos);
+  console.log(sortRepo);
+
   const handleChange = (e) => {
     setValue(e.target.value);
-    fetcher.submit(e.target.form);
   };
   return (
     <Box margin="1rem">
@@ -26,7 +30,7 @@ const TopRepos = () => {
         <Typography variant="p" fontSize="1rem">
           by
         </Typography>
-        <fetcher.Form fullWidth action="post">
+        <Form fullWidth action="post">
           <Select
             id="demo-simple-select"
             name="select"
@@ -34,14 +38,14 @@ const TopRepos = () => {
             onChange={handleChange}
             size="small"
           >
-            <MenuItem value="stars">stars</MenuItem>
-            <MenuItem value="folks">folks</MenuItem>
+            <MenuItem value="stargazers_count">stars</MenuItem>
+            <MenuItem value="forks_count">forks</MenuItem>
             <MenuItem value="size">size</MenuItem>
           </Select>
-        </fetcher.Form>
+        </Form>
       </Box>
       <Grid container spacing={3}>
-        {loader.map((repo) => {
+        {sortRepo.map((repo) => {
           return (
             <Grid item key={repo.id} xs={12} sm={6} md={4}>
               <Card sx={{ padding: "1rem" }}>
@@ -124,7 +128,7 @@ const TopRepos = () => {
 export const loader = async ({ params }) => {
   const username = params.username;
   const response = await fetch(
-    `https://api.github.com/users/${username}/repos?per_page=8&sort=size&order=desc`
+    `https://api.github.com/users/${username}/repos?per_page=100`
   );
   const profileInfo = await response.json();
   return profileInfo;
