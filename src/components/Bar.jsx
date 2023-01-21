@@ -7,12 +7,10 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import _ from "lodash";
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 function MyBarChart({ loader }) {
   const sortVariable = "stargazers_count";
@@ -46,7 +44,7 @@ function MyBarChart({ loader }) {
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
   return (
-    <Box>
+    <Grid item xs={12} sm={6} md={4}>
       <Typography
         variant="h4"
         element="h4"
@@ -54,51 +52,52 @@ function MyBarChart({ loader }) {
           borderBottom: "5px dotted #f2faf3",
           maxWidth: "15rem",
           textAlign: "center",
-          marginLeft: "2rem",
         }}
       >
         Most Starred
       </Typography>
-      <BarChart
-        width={600}
-        height={400}
-        data={dayta}
-        margin={{
-          top: 20,
-          right: 30,
-          left: 20,
-          bottom: 70,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          dataKey="name"
-          label={{
-            value: "Repos",
-            position: "insideBottomRight",
-            offset: -5,
+      <ResponsiveContainer width="100%" aspect={1}>
+        <BarChart
+          width={400}
+          height={300}
+          data={dayta}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 10,
+            bottom: 70,
           }}
-          angle={-45}
-          textAnchor="end"
-        />
-        <YAxis
-          dataKey="uv"
-          label={{ value: "Stars", angle: -90, position: "insideLeft" }}
-        />
-        <Tooltip />
-        <Bar
-          dataKey="uv"
-          fill="#8884d8"
-          shape={<TriangleBar />}
-          label={{ position: "top" }}
-          background={{ fill: "#eee" }}
         >
-          {dayta.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-          ))}
-        </Bar>
-      </BarChart>
-    </Box>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="name"
+            label={{
+              value: "Repos",
+              position: "insideBottomRight",
+              offset: -5,
+            }}
+            angle={-45}
+            textAnchor="end"
+          />
+          <YAxis
+            dataKey="uv"
+            label={{ value: "Stars", angle: -90, position: "insideLeft" }}
+          />
+          <Tooltip />
+          <Bar
+            dataKey="uv"
+            fill="#8884d8"
+            shape={<TriangleBar />}
+            label={{ position: "top" }}
+            background={{ fill: "#eee" }}
+          >
+            {dayta.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </Grid>
   );
 }
 

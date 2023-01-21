@@ -7,7 +7,7 @@ import Root, { action as rootAction } from './root';
 import ProfileInfo, { loader as profileLoader } from './Routes/ProfileInfo';
 import ErrorElement from './Routes/ErrorElement';
 import Index, { loader as IndexRepoLoader } from './Routes/Index';
-import Pie from './components/Pie';
+
 const router = createBrowserRouter([
   {
     path: "/",
