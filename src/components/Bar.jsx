@@ -44,7 +44,7 @@ function MyBarChart({ loader }) {
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={4} p={0}>
       <Typography
         variant="h4"
         element="h4"

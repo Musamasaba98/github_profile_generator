@@ -9,7 +9,12 @@ function Index() {
   const loader = useLoaderData();
 
   return (
-    <Grid container spacing={3} mt="1rem">
+    <Grid
+      container
+      spacing={3}
+      mt="1rem"
+      sx={{ width: "100vw", margin: "0 auto" }}
+    >
       <MyPieChart loader={loader} />
       <MyBarChart loader={loader} />
       <Doghnut loader={loader} />
