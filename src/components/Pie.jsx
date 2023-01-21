@@ -1,4 +1,10 @@
-export const action = async ({ params }) => {
+import React from "react";
+
+function Pie({ loader }) {
+  return <div>Pie</div>;
+}
+
+export const loader = async ({ params }) => {
   const username = params.username;
   const sort = params.sort;
   const response = await fetch(
@@ -7,3 +13,5 @@ export const action = async ({ params }) => {
   const profileInfo = await response.json();
   return profileInfo;
 };
+
+export default Pie;

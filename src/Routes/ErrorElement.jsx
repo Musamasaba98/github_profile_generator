@@ -28,7 +28,9 @@ export default function ErrorElement() {
         </Typography>
         <Typography component="p">
           <Typography component="span">
-            User {error.statusText || error.message}
+            {error.message === "Failed to fetch"
+              ? "Check Your Network Connection"
+              : `User ${error.statusText || error.message}`}
           </Typography>
         </Typography>
         <Link to="/" underline="none">

@@ -4,16 +4,22 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { ArrowBack } from "@mui/icons-material";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function Navbar() {
   const { username } = useParams();
-
+  const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" color="primary" sx={{ top: 0, bottom: "auto" }}>
         <Toolbar>
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(-1);
+            }}
+          >
             <IconButton
               size="large"
               edge="start"

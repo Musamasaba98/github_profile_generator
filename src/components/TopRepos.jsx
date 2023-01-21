@@ -13,7 +13,6 @@ const TopRepos = () => {
     .filter((repo) => !repo.fork)
     .sort((a, b) => b[value] - a[value])
     .slice(0, numberOfRepos);
-  console.log(sortRepo);
 
   const handleChange = (e) => {
     setValue(e.target.value);
