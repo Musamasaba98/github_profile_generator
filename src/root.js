@@ -33,6 +33,14 @@ function Root() {
 export const action = async ({ request }) => {
   const formData = await request.formData()
   const username = formData.get("username")
+  const response = await fetch(`https://api.github.com/users/${username}`);
+  const profileInfo = await response.json();
+  if (profileInfo.message === "Not Found") {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
   return redirect(`/user/${username}`)
 }
 export default Root;

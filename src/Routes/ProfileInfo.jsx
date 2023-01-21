@@ -122,6 +122,13 @@ export const loader = async ({ params }) => {
   const username = params.username;
   const response = await fetch(`https://api.github.com/users/${username}`);
   const profileInfo = await response.json();
+  console.log(profileInfo);
+  if (!profileInfo) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
   return profileInfo;
 };
 

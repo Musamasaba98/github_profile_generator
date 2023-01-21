@@ -27,17 +27,19 @@ function Navbar() {
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             GitHub Profile
           </Typography>
-          <Link
-            to={`/user/${username}/repos`}
-            component="button"
-            style={{
-              textDecoration: "none",
-            }}
-          >
-            <Typography variant="h6" underline="none" color="white">
-              Repositories
-            </Typography>
-          </Link>
+          {username && (
+            <Link
+              to={`/user/${username}/repos`}
+              component="button"
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <Typography variant="h6" underline="none" color="white">
+                Repositories
+              </Typography>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

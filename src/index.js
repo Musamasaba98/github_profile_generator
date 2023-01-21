@@ -5,12 +5,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import TopRepos, { loader as topReposLoader } from './components/TopRepos';
 import Root, { action as rootAction } from './root';
 import ProfileInfo, { loader as profileLoader } from './Routes/ProfileInfo';
-import { action as sortAction } from './components/Sort'
+import ErrorElement from './Routes/ErrorElement';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     action: rootAction,
+    errorElement: <ErrorElement />
   }
   ,
   {
@@ -19,14 +20,15 @@ const router = createBrowserRouter([
     loader: profileLoader,
     children: [
       {
-        path: '/user/:username/repos',
-        element: <TopRepos />,
-        loader: topReposLoader,
+        errorElement: <ErrorElement />,
+        children: [
+          {
+            path: '/user/:username/repos',
+            element: <TopRepos />,
+            loader: topReposLoader,
+          }
+        ]
       },
-      {
-        path: "/user/:username/repos",
-        action: sortAction
-      }
     ]
   }
 ])
