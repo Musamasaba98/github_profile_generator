@@ -82,20 +82,6 @@ const MyPieChart = ({ loader }) => {
           </Pie>
         </PieChart>
       </ResponsiveContainer>
-      {/* <PieChart width={500} height={300}>
-        <Legend layout="vetical" verticalAlign="middle" align="right" />
-        <Pie
-          data={data}
-          dataKey="value"
-          outerRadius={130}
-          innerRadius={80}
-          color={colors}
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-          ))}
-        </Pie>
-      </PieChart> */}
     </Grid>
   );
 };

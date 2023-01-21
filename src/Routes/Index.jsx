@@ -23,7 +23,6 @@ export const loader = async ({ params }) => {
     `https://api.github.com/users/${username}/repos?per_page=200`
   );
   const profileInfo = await response.json();
-  console.log(profileInfo);
   return profileInfo;
 };
 

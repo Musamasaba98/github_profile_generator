@@ -58,14 +58,14 @@ function MyBarChart({ loader }) {
       </Typography>
       <ResponsiveContainer width="100%" aspect={1}>
         <BarChart
-          width={400}
+          width={500}
           height={300}
           data={dayta}
           margin={{
             top: 20,
             right: 30,
             left: 10,
-            bottom: 70,
+            bottom: 100,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
@@ -74,7 +74,7 @@ function MyBarChart({ loader }) {
             label={{
               value: "Repos",
               position: "insideBottomRight",
-              offset: -5,
+              offset: 0,
             }}
             angle={-45}
             textAnchor="end"
