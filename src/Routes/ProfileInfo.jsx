@@ -33,17 +33,25 @@ const ProfileInfo = () => {
           <Typography variant="h3" color="white" align="center">
             {profile.name}
           </Typography>
-          <Typography
-            variant="p"
-            color="#1a1ea2"
-            sx={{
-              fontFamily: "Share Tech Mono",
-              fontSize: "1.5rem",
-              "&:hover": {
-                borderBottom: "2px solid rgb(0, 112, 243)",
-              },
-            }}
-          >{`@${profile.login}`}</Typography>
+          {console.log(profile.html_url)}
+          <a
+            href={profile.html_url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <Typography
+              variant="p"
+              color="#1a1ea2"
+              sx={{
+                fontFamily: "Share Tech Mono",
+                fontSize: "1.5rem",
+                "&:hover": {
+                  borderBottom: "2px solid rgb(0, 112, 243)",
+                },
+              }}
+            >{`@${profile.login}`}</Typography>
+          </a>
         </Box>
         <Box
           padding="1rem .1rem"
